@@ -28,5 +28,6 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/yucha/Documents/workspace/devtools/wlp/dev/api/spec/com.ibm.websphere.javaee.servlet.4.0_1.0.31.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

@@ -17,7 +17,13 @@
  		<th>Price</th>
  		<th>Quantity</th>
  	</tr>
-
+	<c:forEach items="${order.items}" var="item" varStatus="loop">
+		<tr>
+			<td><c:out value="${item.name}"></c:out></td>
+			<td><c:out value="$ ${item.price}"></c:out></td>
+			<td><c:out value = "${item.quantity}" /></td>
+		</tr>
+	</c:forEach>
 	  <tr>
 		<td colspan="2"><input type="submit" value="Confirm order"></td>
 	  </tr>

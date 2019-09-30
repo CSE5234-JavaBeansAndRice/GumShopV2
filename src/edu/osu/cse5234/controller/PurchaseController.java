@@ -11,23 +11,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/purchase")
 public class PurchaseController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public void displayItems(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-        response.getWriter().println("Display Items for Purchase!");
-    }
+	@RequestMapping(method = RequestMethod.GET)
+	public String viewOrderEntryPage(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// ... instantiate and set order object with items to display
+		return "OrderEntryForm";
+	}
 
-    @RequestMapping(path = "/submitItems", method = RequestMethod.POST)
-    public String submitItems() throws Exception {
-        return "HelloJSP";
+	@RequestMapping(path = "/submitItems", method = RequestMethod.POST)
+	public String submitItems(@ModelAttribute("order") Order order, HttpServletRequest request) {
+		request.getSession().setAttribute("order", order);
+		return "redirect:/purchase/paymentEntry";
+	}
 
-    }
 
-    @RequestMapping(path = "/paymentEntry", method = RequestMethod.GET)
-    public String displayPaymentEntry() throws Exception {
-        return "HelloJSP";
+	@RequestMapping(path = "/paymentEntry", method = RequestMethod.GET)
+	public String viewPaymentEntryPage(HttpServletRequest request, HttpServletResponse response) {
+		request.setAttribute("payment", new PaymentInfo());	
+		return "PaymentEntryForm";
+	}
 
-    }
 
     @RequestMapping(path = "/submitPayment", method = RequestMethod.POST)
     public String submitPaymentInfo() throws Exception {

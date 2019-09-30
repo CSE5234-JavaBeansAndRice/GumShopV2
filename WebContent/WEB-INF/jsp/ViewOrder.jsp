@@ -27,7 +27,6 @@
 	  <tr>
 		<td colspan="2"><input type="submit" value="Confirm order"></td>
 	  </tr>
-	
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
     </table>

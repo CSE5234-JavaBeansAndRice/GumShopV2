@@ -98,10 +98,6 @@ public class PurchaseController {
     		HttpServletRequest request) throws Exception {
     	//Order order = (Order) request.getSession().getAttribute("order");
     	Order order = (Order) request.getSession().getAttribute("order");
-    	List<Item> items = order.getItems();
-    	for (int i = 0; i < items.size(); i++) {
-    		System.out.println(items.get(i).getQuantity());
-    	}
         return "ViewOrder";
 
     }

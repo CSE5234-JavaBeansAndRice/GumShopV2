@@ -87,9 +87,10 @@ public class PurchaseController {
     }
 
     @RequestMapping(path = "/viewOrder", method = RequestMethod.GET)
-    public String displayCompleteOrder(@ModelAttribute("order") Order order,
+    public String displayCompleteOrder(@ModelAttribute("order") Order order, 
     		HttpServletRequest request) throws Exception {
-        request.getSession().setAttribute("order", order);
+    	//Order order = (Order) request.getSession().getAttribute("order");
+    	request.getSession().setAttribute("order", order);
         return "ViewOrder";
 
     }

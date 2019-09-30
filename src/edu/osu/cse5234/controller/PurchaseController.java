@@ -61,11 +61,11 @@ public class PurchaseController {
     public String submitPaymentInfo(@ModelAttribute("payment") PaymentInfo payment,
     		HttpServletRequest request, @RequestParam String ccNum, @RequestParam String expiration, @RequestParam String cvv,
             @RequestParam String cardHolder) throws Exception {
-    	request.getSession().setAttribute("payment", payment);
         payment.setCcNum(ccNum);
         payment.setExpiration(expiration);
         payment.setCvv(cvv);
         payment.setCardHolder(cardHolder);
+    	request.getSession().setAttribute("payment", payment);
         return "redirect:/purchase/shippingEntry";
 
     }
@@ -80,17 +80,24 @@ public class PurchaseController {
 
     @RequestMapping(path = "/submitShipping", method = RequestMethod.POST)
     public String submitShippingInfo(@ModelAttribute("shipping") ShippingInfo shipping,
-    		HttpServletRequest request) throws Exception {
+    		HttpServletRequest request, @RequestParam String name, @RequestParam String addressLine1, @RequestParam String addressLine2,
+            @RequestParam String city, @RequestParam String state, @RequestParam String zip) throws Exception {
+        shipping.setName(name);
+        shipping.setAddressLine1(addressLine1);
+        shipping.setAddressLine2(addressLine2);
+        shipping.setCity(city);
+        shipping.setState(state);
+        shipping.setZip(zip);
     	request.getSession().setAttribute("shipping", shipping);
         return "redirect:/purchase/viewOrder";
 
     }
 
     @RequestMapping(path = "/viewOrder", method = RequestMethod.GET)
-    public String displayCompleteOrder(@ModelAttribute("order") Order order, 
+    public String displayCompleteOrder(HttpServletResponse response, 
     		HttpServletRequest request) throws Exception {
     	//Order order = (Order) request.getSession().getAttribute("order");
-    	request.getSession().setAttribute("order", order);
+    	request.getSession().getAttribute("order");
         return "ViewOrder";
 
     }

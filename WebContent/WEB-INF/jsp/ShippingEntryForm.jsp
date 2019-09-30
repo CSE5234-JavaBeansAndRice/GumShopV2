@@ -9,7 +9,7 @@
 <title>Shipment Entry Form</title>
 </head>
 <body>
-<form:form modelAttribute="shipping" method="post" action="viewOrder">
+<form:form modelAttribute="shipping" method="post" action="submitShipping">
  <p>
   Enter your name:
   <input type="text" name="name" id = "name" />
@@ -45,6 +45,9 @@
   <input type="text" name="zip" id="zip" />
   <br />
   </p>
+  
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  
     
    <input type="submit" value="Continue to view and confirm order">
 </form:form>

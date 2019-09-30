@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import edu.osu.cse5234.model.Item;
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.model.PaymentInfo;
+import edu.osu.cse5234.model.ShippingInfo;
 
 @Controller
 @RequestMapping("/purchase")
@@ -54,32 +55,42 @@ public class PurchaseController {
     }
 
     @RequestMapping(path = "/submitPayment", method = RequestMethod.POST)
-    public String submitPaymentInfo() throws Exception {
-        return "HelloJSP";
+    public String submitPaymentInfo(@ModelAttribute("payment") PaymentInfo payment,
+    		HttpServletRequest request) throws Exception {
+    	request.getSession().setAttribute("payment", payment);
+        return "redirect:/purchase/shippingEntry";
 
     }
 
     @RequestMapping(path = "/shippingEntry", method = RequestMethod.GET)
-    public String displayShippingEntry() throws Exception {
+    public String displayShippingEntry(HttpServletRequest request,
+    		HttpServletResponse response) throws Exception {
+        request.setAttribute("shipping", new ShippingInfo());
         return "ShippingEntryForm";
 
     }
 
     @RequestMapping(path = "/submitShipping", method = RequestMethod.POST)
-    public String submitShippingInfo() throws Exception {
-        return "HelloJSP";
+    public String submitShippingInfo(@ModelAttribute("shipping") ShippingInfo shipping,
+    		HttpServletRequest request) throws Exception {
+    	request.getSession().setAttribute("shipping", shipping);
+        return "redirect:/purchase/viewOrder";
 
     }
 
     @RequestMapping(path = "/viewOrder", method = RequestMethod.GET)
-    public String displayCompleteOrder() throws Exception {
+    public String displayCompleteOrder(@ModelAttribute("order") Order order,
+    		HttpServletRequest request) throws Exception {
+        request.getSession().setAttribute("order", order);
         return "ViewOrder";
 
     }
 
     @RequestMapping(path = "/confirmOrder", method = RequestMethod.POST)
-    public String confirmOrder() throws Exception {
-        return "HelloJSP";
+    public String confirmOrder(@ModelAttribute("order") Order order,
+    		HttpServletRequest request) throws Exception {
+        request.getSession().setAttribute("order", order);
+        return "redirect:/purchase/viewConfirmation";
 
     }
 

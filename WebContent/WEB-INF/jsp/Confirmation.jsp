@@ -7,6 +7,6 @@
 <title>Confirmation Page</title>
 </head>
 <body>
-
+	Your order has been submitted and will be shipped shortly!
 </body>
 </html>

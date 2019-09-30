@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.osu.cse5234.model.Item;
 import edu.osu.cse5234.model.Order;
@@ -24,6 +25,7 @@ public class PurchaseController {
     public String viewOrderEntryForm(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         Order order = new Order();
+        request.setAttribute("order", order);
         String[] gums = { "Bubble", "Spearmint", "Peppermint", "Wintergreen",
                 "Cinnamon" };
         List<Item> items = new ArrayList<Item>();
@@ -50,14 +52,20 @@ public class PurchaseController {
     @RequestMapping(path = "/paymentEntry", method = RequestMethod.GET)
     public String viewPaymentEntryPage(HttpServletRequest request,
             HttpServletResponse response) {
-        request.setAttribute("payment", new PaymentInfo());
+        PaymentInfo payment = new PaymentInfo();
+        request.getSession().setAttribute("payment", payment);
         return "PaymentEntryForm";
     }
 
     @RequestMapping(path = "/submitPayment", method = RequestMethod.POST)
     public String submitPaymentInfo(@ModelAttribute("payment") PaymentInfo payment,
-    		HttpServletRequest request) throws Exception {
+    		HttpServletRequest request, @RequestParam String ccNum, @RequestParam String expiration, @RequestParam String cvv,
+            @RequestParam String cardHolder) throws Exception {
     	request.getSession().setAttribute("payment", payment);
+        payment.setCcNum(ccNum);
+        payment.setExpiration(expiration);
+        payment.setCvv(cvv);
+        payment.setCardHolder(cardHolder);
         return "redirect:/purchase/shippingEntry";
 
     }

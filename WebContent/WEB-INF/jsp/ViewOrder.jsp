@@ -9,7 +9,7 @@
 <title>Order Summary</title>
 </head>
 <body>
-<form:form modelAttribute="order" method="post" action="purchase/confirmOrder">
+<form:form modelAttribute="order" method="post" action="confirmOrder">
 
     <table style="border= 2px solid black">
  	<tr>
@@ -26,7 +26,7 @@
 	</c:forEach>
 
 	  <tr>
-		<td colspan="2"><input type="submit" value="Purchase"></td>
+		<td colspan="2"><input type="submit" value="Confirm"></td>
 	  </tr>
 	
 

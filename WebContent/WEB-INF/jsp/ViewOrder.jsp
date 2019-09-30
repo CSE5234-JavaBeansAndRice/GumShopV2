@@ -10,7 +10,7 @@
 </head>
 <body>
 <form:form modelAttribute="order" method="post" action="confirmOrder">
-
+ <h2>Here is your order: </h2>
     <table style="border= 2px solid black">
  	<tr>
  		<th>Name</th>

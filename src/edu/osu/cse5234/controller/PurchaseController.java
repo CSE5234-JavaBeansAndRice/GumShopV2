@@ -100,7 +100,7 @@ public class PurchaseController {
     	Order order = (Order) request.getSession().getAttribute("order");
     	List<Item> items = order.getItems();
     	for (int i = 0; i < items.size(); i++) {
-    		System.out.println(items.get(i).getName());
+    		System.out.println(items.get(i).getQuantity());
     	}
         return "ViewOrder";
 

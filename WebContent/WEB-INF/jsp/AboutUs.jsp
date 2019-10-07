@@ -40,6 +40,13 @@
 		<div class="member-edu">Education: The Ohio State University</div>
 		<div class="member-exp">Experience: :)</div>
 	</div>
+	<div class="member-wrapper">
+		<div class="member-name">Charlie Yu</div>
+		<img src="https://avatars0.githubusercontent.com/u/22628418?s=460&v=4" width="100" height="100" alt="Image of Charlie Yu"/>
+		<div class="member-title">Title: Software Engineer</div>
+		<div class="member-edu">Education: The Ohio State University</div>
+		<div class="member-exp">Experience: So much. Like Way toooo much</div>
+	</div>
 </div>
 
 <jsp:include page="Footer.jsp"/>

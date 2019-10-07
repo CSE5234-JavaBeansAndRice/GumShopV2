@@ -36,6 +36,12 @@
 		<div class="info-phone">Phone: do not worry about it ;)</div>
 		<div class="info-github">Github: @yutheman</div>
 	</div>
+	<div class="info-wrapper">
+		<div class="info-name">Simon Turner</div>
+		<div class="info-email">Email: turner.1418@osu.edu</div>
+		<div class="info-phone">Phone: (234) 000-0000</div>
+		<div class="info-github">Github: @SimonJTurner</div>
+	</div>
 </div>
 
 <jsp:include page="Footer.jsp"/>

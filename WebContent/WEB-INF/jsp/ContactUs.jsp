@@ -31,10 +31,10 @@
 		<div class="info-github">Github: github.com/skyfaqer</div>
 	</div>
 	<div class="info-wrapper">
-		<div class="info-name">Name4</div>
-		<div class="info-email">Email: XXX</div>
-		<div class="info-phone">Phone: XXX</div>
-		<div class="info-github">Github: XXX</div>
+		<div class="info-name">Charlie Yu</div>
+		<div class="info-email">Email: yu.1879@osu.edu</div>
+		<div class="info-phone">Phone: do not worry about it ;)</div>
+		<div class="info-github">Github: @yutheman</div>
 	</div>
 </div>
 

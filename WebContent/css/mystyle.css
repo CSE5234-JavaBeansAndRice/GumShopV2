@@ -104,3 +104,15 @@ td.tot {
 .confirmation {
 	text-align: center;
 }
+
+.nav-bar {
+	display: inline-block;
+	width: 100%;
+}
+
+.nav-item {
+	display: block;
+	float: left;
+	margin-right: 40px;
+	font-size: 14px;
+}

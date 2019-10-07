@@ -21,4 +21,14 @@ public class HomeController {
 //		return "HelloJSP";
 //		
 //	}
+	
+	@RequestMapping(value = "/about", method = RequestMethod.GET)
+	public String displayAboutUs(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return "AboutUs";
+	}
+	
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	public String displayContactUs(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		return "ContactUs";
+	}
 }

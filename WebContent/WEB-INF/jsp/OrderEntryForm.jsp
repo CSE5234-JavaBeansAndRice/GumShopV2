@@ -10,6 +10,7 @@
 <title>Order Entry Form</title>
 </head>
 <body>
+<jsp:include page="Header.jsp"/>
 <div class="orderFormTitle">New Order</div>
 <form:form modelAttribute="order" method="post" action="purchase/submitItems">
 
@@ -32,6 +33,7 @@
     </table>
 
 </form:form>
+<jsp:include page="Footer.jsp"/>
 
 </body>
 </html>

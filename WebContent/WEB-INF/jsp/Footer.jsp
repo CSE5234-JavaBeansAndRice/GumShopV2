@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <footer>
+	<hr/>
 	<p>&copy; 2019 GumShop. All Rights Reserved.</p>
 </footer>
 </html>

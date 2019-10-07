@@ -11,7 +11,7 @@
 <jsp:include page="Header.jsp"/>
 
 <div class="about-wrapper">
-	<div class="about-title">Team Members</div>
+	<div class="about-title">Our Team Members</div>
 	<div class="member-wrapper">
 		<div class="member-name">Name1</div>
 		<img src="" width="100" height="100" alt="Image of Name1"/>

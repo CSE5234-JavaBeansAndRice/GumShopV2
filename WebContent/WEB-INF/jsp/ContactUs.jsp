@@ -10,7 +10,33 @@
 <body>
 <jsp:include page="Header.jsp"/>
 
-<p>Contact (TODO)</p>
+<div class="contact-wrapper">
+	<div class="contact-title">Contact Info</div>
+	<div class="info-wrapper">
+		<div class="info-name">Name1</div>
+		<div class="info-email">Email: XXX</div>
+		<div class="info-phone">Phone: XXX</div>
+		<div class="info-github">Github: XXX</div>
+	</div>
+	<div class="info-wrapper">
+		<div class="info-name">Name2</div>
+		<div class="info-email">Email: XXX</div>
+		<div class="info-phone">Phone: XXX</div>
+		<div class="info-github">Github: XXX</div>
+	</div>
+	<div class="info-wrapper">
+		<div class="info-name">Guoyao Cheng</div>
+		<div class="info-email">Email: cheng.1367@osu.edu</div>
+		<div class="info-phone">Phone: +1 (123)456-7890</div>
+		<div class="info-github">Github: github.com/skyfaqer</div>
+	</div>
+	<div class="info-wrapper">
+		<div class="info-name">Name4</div>
+		<div class="info-email">Email: XXX</div>
+		<div class="info-phone">Phone: XXX</div>
+		<div class="info-github">Github: XXX</div>
+	</div>
+</div>
 
 <jsp:include page="Footer.jsp"/>
 </body>

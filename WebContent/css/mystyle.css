@@ -117,16 +117,16 @@ td.tot {
 	font-size: 14px;
 }
 
-.about-wrapper {
+.about-wrapper, .contact-wrapper {
 	margin: 30px 0;
 }
 
-.about-title {
+.about-title, .contact-title {
 	font-size: 18px;
 	font-weight: 700;
 }
 
-.member-wrapper {
+.member-wrapper, .info-wrapper {
 	margin: 20px 0;
 }
 
@@ -140,4 +140,13 @@ td.tot {
 
 .member-title, .member-edu, .member-exp {
 	font-size: 14px;
+}
+
+.info-name, .info-email, .info-phone, .info-github {
+	margin: 4px 0 4px 0;
+	font-size: 14px;
+}
+
+.info-name {
+	font-weight: 700;
 }

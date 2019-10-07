@@ -19,10 +19,10 @@
 		<div class="info-github">Github: XXX</div>
 	</div>
 	<div class="info-wrapper">
-		<div class="info-name">Name2</div>
-		<div class="info-email">Email: XXX</div>
-		<div class="info-phone">Phone: XXX</div>
-		<div class="info-github">Github: XXX</div>
+		<div class="info-name">Fan Lyu</div>
+		<div class="info-email">Email: lyu.276@osu.edu</div>
+		<div class="info-phone">Phone: 1 6140000000</div>
+		<div class="info-github">Github: @lvfann1</div>
 	</div>
 	<div class="info-wrapper">
 		<div class="info-name">Guoyao Cheng</div>

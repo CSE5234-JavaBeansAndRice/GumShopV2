@@ -8,7 +8,7 @@ html {
 }
 
 body {
-	margin: 0px;
+	margin: 0 20px;
 	padding: 0px;
 	height: 100%;
 }
@@ -114,5 +114,30 @@ td.tot {
 	display: block;
 	float: left;
 	margin-right: 40px;
+	font-size: 14px;
+}
+
+.about-wrapper {
+	margin: 30px 0;
+}
+
+.about-title {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.member-wrapper {
+	margin: 20px 0;
+}
+
+.member-name, .member-wrapper img, .member-title, .member-edu, .member-exp {
+	margin: 4px 0 4px 0;
+}
+
+.member-name {
+	font-weight: 700;
+}
+
+.member-title, .member-edu, .member-exp {
 	font-size: 14px;
 }

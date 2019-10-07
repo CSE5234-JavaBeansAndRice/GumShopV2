@@ -10,7 +10,7 @@
 <body>
 <jsp:include page="Header.jsp"/>
 
-<p>Contact</p>
+<p>Contact (TODO)</p>
 
 <jsp:include page="Footer.jsp"/>
 </body>

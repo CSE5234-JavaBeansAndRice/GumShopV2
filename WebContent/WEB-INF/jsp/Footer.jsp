@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-<div class="footer-wrapper">
+<footer>
 	<p>&copy; 2019 GumShop. All Rights Reserved.</p>
-</div>
+</footer>
 </html>

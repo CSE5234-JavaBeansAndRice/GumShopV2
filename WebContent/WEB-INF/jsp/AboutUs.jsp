@@ -10,7 +10,10 @@
 <body>
 <jsp:include page="Header.jsp"/>
 
-<p>About</p>
+<div class="about-wrapper">
+	<div class="about-title">Team Members</div>
+	<div class="about-content-wrapper"></div>
+</div>
 
 <jsp:include page="Footer.jsp"/>
 </body>

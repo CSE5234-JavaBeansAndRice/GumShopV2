@@ -10,6 +10,8 @@
 <body>
 <jsp:include page="Header.jsp"/>
 
+Welcome to GumShop! We specialize in providing you with the most artisanal flavors and types of chewing gum.
+
 
 <jsp:include page="Footer.jsp"/>
 </body>

@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style><%@include file="/css/mystyle.css"%></style>
 <meta charset="ISO-8859-1">
 <title>Payment Entry Form</title>
 </head>

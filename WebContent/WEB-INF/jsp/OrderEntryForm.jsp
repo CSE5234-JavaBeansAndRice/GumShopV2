@@ -5,32 +5,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style><%@include file="/css/mystyle.css"%></style>
 <meta charset="ISO-8859-1">
 <title>Order Entry Form</title>
 </head>
 <body>
+<div class="orderFormTitle">New Order</div>
 <form:form modelAttribute="order" method="post" action="purchase/submitItems">
 
-    <table style="border= 2px solid black">
+    <table class="orderEntryForm">
  	<tr>
- 		<th>Name</th>
- 		<th>Price</th>
- 		<th>Quantity</th>
+ 		<th class="formItem">Name</th>
+ 		<th class="formItem">Price</th>
+ 		<th class="formItem">Quantity</th>
  	</tr>
 	<c:forEach items="${order.items}" var="item" varStatus="loop">
 		<tr>
-			<td><form:hidden path="items[${loop.index}].name" value="${item.name}"/><c:out value="${item.name }"/></td>
-			<td>$<form:hidden path="items[${loop.index}].price" value="${item.price}"/><c:out value ="${item.price}"/></td>
-			<td><form:input path="items[${loop.index}].quantity" /></td>
+			<td class="formItem"><form:hidden path="items[${loop.index}].name" value="${item.name}"/><c:out value="${item.name }"/></td>
+			<td class="formItem">$<form:hidden path="items[${loop.index}].price" value="${item.price}"/><c:out value ="${item.price}"/></td>
+			<td class="formItem"><form:input path="items[${loop.index}].quantity" /></td>
 		</tr>
 	</c:forEach>
-
-	  <tr>
-		<td colspan="2"><input type="submit" value="Purchase"></td>
-	  </tr>
-	
-
+	<tr>
+		<td class="submitOrder" colspan="2"><input class="submitButton" type="submit" value="Purchase"></td>
+	</tr>
     </table>
+
 </form:form>
 
 </body>

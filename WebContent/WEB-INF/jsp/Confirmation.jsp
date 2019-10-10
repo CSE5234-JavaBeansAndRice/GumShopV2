@@ -10,6 +10,8 @@
 <body>
 	<h3>Your order has been submitted and will be shipped shortly!</h3>
 	
+	<div class="confirmationCode">Confirmation code: <%= request.getSession().getAttribute("confirmationCode") %></div>
+	
 	<a href="/GumShopV2" class="nav-item">Back to Home</a>
 </body>
 </html>

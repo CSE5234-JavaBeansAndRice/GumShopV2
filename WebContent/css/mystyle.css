@@ -202,3 +202,11 @@ td.tot {
 .submitButton:hover {
 	background-color: #AAAAAA;
 }
+
+.message {
+	color: #DC143C;
+}
+
+.confirmationCode {
+	margin: 2px 0 10px 0;
+}

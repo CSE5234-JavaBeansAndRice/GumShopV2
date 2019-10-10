@@ -1,8 +1,5 @@
 package edu.osu.cse5234.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,10 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.osu.cse5234.model.Item;
+import edu.osu.cse5234.business.OrderProcessingServiceBean;
+import edu.osu.cse5234.business.view.Inventory;
+import edu.osu.cse5234.business.view.InventoryService;
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.model.PaymentInfo;
 import edu.osu.cse5234.model.ShippingInfo;
+import edu.osu.cse5234.util.ServiceLocator;
 
 @Controller
 @RequestMapping("/purchase")
@@ -24,32 +24,31 @@ public class PurchaseController {
     @RequestMapping(method = RequestMethod.GET)
     public String viewOrderEntryForm(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-        Order order = new Order();
+    	Order order = new Order();
         request.setAttribute("order", order);
-        String[] gums = { "Bubble", "Spearmint", "Peppermint", "Wintergreen",
-                "Cinnamon" };
-        List<Item> items = new ArrayList<Item>();
-        for (int i = 0; i < 5; i++) {
-            Item item = new Item();
-            item.setName(gums[i]);
-            item.setPrice(i + .5);
-            item.setQuantity((i / 3) + 1);
-            items.add(item);
-        }
-        order.setItems(items);
+        InventoryService inventoryService = ServiceLocator.getInventoryService();
+        Inventory inventory = inventoryService.getAvailableInventory();
+        order.setItems(inventory.getItemList());
         request.getSession().setAttribute("order", order);
         // ... instantiate and set order object with items to display
         return "OrderEntryForm";
     }
 
-    @RequestMapping(path = "/submitItems", method = RequestMethod.POST)
+    @RequestMapping(value = "/submitItems", method = RequestMethod.POST)
     public String submitItems(@ModelAttribute("order") Order order,
             HttpServletRequest request) {
-        request.getSession().setAttribute("order", order);
-        return "redirect:/purchase/paymentEntry";
+    	OrderProcessingServiceBean orderProcessingServiceBean = ServiceLocator.getOrderProcessingService();
+    	request.getSession().setAttribute("order", order);
+        if (orderProcessingServiceBean.validateItemAvailability(order)) {
+        	return "redirect:/purchase/paymentEntry";
+        }
+        else {
+        	request.setAttribute("message", "Please resubmit item quantities.");
+        	return "OrderEntryForm";
+        }
     }
 
-    @RequestMapping(path = "/paymentEntry", method = RequestMethod.GET)
+    @RequestMapping(value = "/paymentEntry", method = RequestMethod.GET)
     public String viewPaymentEntryPage(HttpServletRequest request,
             HttpServletResponse response) {
         PaymentInfo payment = new PaymentInfo();
@@ -57,7 +56,7 @@ public class PurchaseController {
         return "PaymentEntryForm";
     }
 
-    @RequestMapping(path = "/submitPayment", method = RequestMethod.POST)
+    @RequestMapping(value = "/submitPayment", method = RequestMethod.POST)
     public String submitPaymentInfo(@ModelAttribute("payment") PaymentInfo payment,
     		HttpServletRequest request, @RequestParam String ccNum, @RequestParam String expiration, @RequestParam String cvv,
             @RequestParam String cardHolder) throws Exception {
@@ -70,7 +69,7 @@ public class PurchaseController {
 
     }
 
-    @RequestMapping(path = "/shippingEntry", method = RequestMethod.GET)
+    @RequestMapping(value = "/shippingEntry", method = RequestMethod.GET)
     public String displayShippingEntry(HttpServletRequest request,
     		HttpServletResponse response) throws Exception {
         request.setAttribute("shipping", new ShippingInfo());
@@ -78,7 +77,7 @@ public class PurchaseController {
 
     }
 
-    @RequestMapping(path = "/submitShipping", method = RequestMethod.POST)
+    @RequestMapping(value = "/submitShipping", method = RequestMethod.POST)
     public String submitShippingInfo(@ModelAttribute("shipping") ShippingInfo shipping,
     		HttpServletRequest request, @RequestParam String name, @RequestParam String addressLine1, @RequestParam String addressLine2,
             @RequestParam String city, @RequestParam String state, @RequestParam String zip) throws Exception {
@@ -93,7 +92,7 @@ public class PurchaseController {
 
     }
 
-    @RequestMapping(path = "/viewOrder", method = RequestMethod.GET)
+    @RequestMapping(value = "/viewOrder", method = RequestMethod.GET)
     public String displayCompleteOrder(HttpServletResponse response, 
     		HttpServletRequest request) throws Exception {
     	//Order order = (Order) request.getSession().getAttribute("order");
@@ -102,15 +101,18 @@ public class PurchaseController {
 
     }
 
-    @RequestMapping(path = "/confirmOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/confirmOrder", method = RequestMethod.POST)
     public String confirmOrder(@ModelAttribute("order") Order order,
     		HttpServletRequest request) throws Exception {
+    	OrderProcessingServiceBean orderProcessingServiceBean = ServiceLocator.getOrderProcessingService();
+    	String confirmationCode = orderProcessingServiceBean.processOrder(order);
         request.getSession().setAttribute("order", order);
+        request.getSession().setAttribute("confirmationCode", confirmationCode);
         return "redirect:/purchase/viewConfirmation";
 
     }
 
-    @RequestMapping(path = "/viewConfirmation", method = RequestMethod.GET)
+    @RequestMapping(value = "/viewConfirmation", method = RequestMethod.GET)
     public String displayConfirmation() throws Exception {
         return "Confirmation";
 

@@ -12,6 +12,11 @@
 <body>
 <jsp:include page="Header.jsp"/>
 <div class="orderFormTitle">New Order</div>
+<div class="message">
+	<% if (request.getAttribute("message") != null) { %>
+		<%= request.getAttribute("message") %>
+	<% } %>
+</div>
 <form:form modelAttribute="order" method="post" action="purchase/submitItems">
 
     <table class="orderEntryForm">

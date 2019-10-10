@@ -3,6 +3,7 @@
 	<name>GumShopV2</name>
 	<comment></comment>
 	<projects>
+		<project>GumShopV2-InventoryManagement-EJBClient</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

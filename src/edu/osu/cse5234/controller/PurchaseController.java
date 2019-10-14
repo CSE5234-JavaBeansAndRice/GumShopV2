@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.osu.cse5234.business.OrderProcessingServiceBean;
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.model.PaymentInfo;
 import edu.osu.cse5234.model.ShippingInfo;
@@ -39,7 +40,12 @@ public class PurchaseController {
     public String submitItems(@ModelAttribute("order") Order order,
             HttpServletRequest request) {
         request.getSession().setAttribute("order", order);
-        return "redirect:/purchase/paymentEntry";
+        OrderProcessingServiceBean service = ServiceLocator.getOrderProcessingService();
+        if (service.validateItemAvailability(order)) {
+            return "redirect:/purchase/paymentEntry";
+        } else {
+        	return "OrderEntryForm";
+        }
     }
 
     @RequestMapping(path = "/paymentEntry", method = RequestMethod.GET)
@@ -99,12 +105,16 @@ public class PurchaseController {
     public String confirmOrder(@ModelAttribute("order") Order order,
     		HttpServletRequest request) throws Exception {
         request.getSession().setAttribute("order", order);
+        OrderProcessingServiceBean service = ServiceLocator.getOrderProcessingService();
+        String code = service.processOrder(order);
+        request.getSession().setAttribute("code", code);
         return "redirect:/purchase/viewConfirmation";
 
     }
 
     @RequestMapping(path = "/viewConfirmation", method = RequestMethod.GET)
-    public String displayConfirmation() throws Exception {
+    public String displayConfirmation(@ModelAttribute("code") String code, HttpServletRequest request) throws Exception {
+    	request.getSession().setAttribute("code", code);
         return "Confirmation";
 
     }

@@ -1,10 +1,14 @@
 package edu.osu.cse5234.business;
 
+import java.util.List;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.util.ServiceLocator;
+import osu.edu.cse5234.business.view.InventoryService;
+import osu.edu.cse5234.business.view.Item;
 
 /**
  * Session Bean implementation class OrderProcessingServiceBean
@@ -21,7 +25,13 @@ public class OrderProcessingServiceBean {
     }
 
     public String processOrder(Order order) {
-        return "none";
+    	InventoryService service = ServiceLocator.getInventoryService();
+    	List<Item> items = order.getItems();
+    	if (service.validateQuantity(items)) {
+    		service.updateInventory(items);
+            return "3409439598423";
+    	}
+    	return "none";
     }
 
     public boolean validateItemAvailability(Order order) {

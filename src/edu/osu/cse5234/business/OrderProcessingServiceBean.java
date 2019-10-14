@@ -7,8 +7,8 @@ import javax.ejb.Stateless;
 
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.util.ServiceLocator;
-import osu.edu.cse5234.business.view.InventoryService;
-import osu.edu.cse5234.business.view.Item;
+import edu.osu.cse5234.business.view.InventoryService;
+import edu.osu.cse5234.business.view.Item;
 
 /**
  * Session Bean implementation class OrderProcessingServiceBean

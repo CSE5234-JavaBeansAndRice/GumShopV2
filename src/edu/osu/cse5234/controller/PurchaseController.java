@@ -17,8 +17,8 @@ import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.model.PaymentInfo;
 import edu.osu.cse5234.model.ShippingInfo;
 import edu.osu.cse5234.util.ServiceLocator;
-import osu.edu.cse5234.business.view.InventoryService;
-import osu.edu.cse5234.business.view.Item;
+import edu.osu.cse5234.business.view.InventoryService;
+import edu.osu.cse5234.business.view.Item;
 
 @Controller
 @RequestMapping("/purchase")

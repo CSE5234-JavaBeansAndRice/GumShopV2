@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.model.PaymentInfo;
 import edu.osu.cse5234.model.ShippingInfo;
+import edu.osu.cse5234.util.ServiceLocator;
+import osu.edu.cse5234.business.view.InventoryService;
 import osu.edu.cse5234.business.view.Item;
 
 @Controller
@@ -26,17 +28,8 @@ public class PurchaseController {
             HttpServletResponse response) throws Exception {
         Order order = new Order();
         request.setAttribute("order", order);
-        String[] gums = { "Bubble", "Spearmint", "Peppermint", "Wintergreen",
-                "Cinnamon" };
-        List<Item> items = new ArrayList<Item>();
-        for (int i = 0; i < 5; i++) {
-            Item item = new Item();
-            item.setName(gums[i]);
-            item.setPrice(i + .5);
-            item.setQuantity((i / 3) + 1);
-            items.add(item);
-        }
-        order.setItems(items);
+        InventoryService service = ServiceLocator.getInventoryService();
+        order.setItems(service.getAvailableInventory().getItems());
         request.getSession().setAttribute("order", order);
         // ... instantiate and set order object with items to display
         return "OrderEntryForm";

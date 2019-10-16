@@ -113,8 +113,8 @@ public class PurchaseController {
     }
 
     @RequestMapping(path = "/viewConfirmation", method = RequestMethod.GET)
-    public String displayConfirmation(@ModelAttribute("code") String code, HttpServletRequest request) throws Exception {
-    	request.getSession().setAttribute("code", code);
+    public String displayConfirmation(HttpServletRequest request) throws Exception {
+//    	String code = (String) request.getSession().getAttribute("code");
         return "Confirmation";
 
     }

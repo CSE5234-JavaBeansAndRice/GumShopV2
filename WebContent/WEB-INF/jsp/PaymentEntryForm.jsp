@@ -37,7 +37,7 @@
     
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     
-   <input type="submit" value="Continue to shipping information">
+   <input style="width: 300px" class = "submitButton" type="submit" value="Continue to shipping information">
 </form:form>
 
 </body>

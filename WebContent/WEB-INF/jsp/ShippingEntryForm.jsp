@@ -50,7 +50,7 @@
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   
     
-   <input type="submit" value="Continue to view and confirm order">
+   <input style = "width: 300px" class = "submitButton" type="submit" value="Continue to view and confirm order">
 </form:form>
 
 </body>

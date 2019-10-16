@@ -26,7 +26,7 @@
 		</tr>
 	</c:forEach>
 	  <tr>
-		<td colspan="2"><input type="submit" value="Confirm order"></td>
+		<td colspan="2"><input class = "submitButton" style="width: 120px"type="submit" value="Confirm order"></td>
 	  </tr>
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 

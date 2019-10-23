@@ -1,19 +1,46 @@
 package edu.osu.cse5234.model;
 import java.util.List;
 
-import edu.osu.cse5234.business.view.Item;
 
 public class Order {
-	private List<Item> items;
+	private int id;
+	private String customerName;
+	private String emailAddress;
+	private List<LineItem> lineItems;
+	
 	public Order() {
     
     } 
 	
-	public void setItems(List<Item> items) {
-		this.items = items;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
-	public List<Item> getItems() {
-		return items;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+	
+	public void setLineItems(List<LineItem> lineItems) {
+		this.lineItems = lineItems;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	
+	public String getCustomerName(){
+		return customerName;
+	}
+	
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+	
+	public List<LineItem> getLineItems(){
+		return lineItems;
 	}
 }

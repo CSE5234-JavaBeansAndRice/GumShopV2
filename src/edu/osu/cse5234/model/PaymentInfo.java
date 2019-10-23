@@ -1,10 +1,15 @@
 package edu.osu.cse5234.model;
 
 public class PaymentInfo {
+	private int id;
 	private String ccNum;
 	private String expiration;
 	private String cvv;
 	private String cardHolder;
+	
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public void setCcNum(String ccNum) {
 		this.ccNum = ccNum;
@@ -20,6 +25,10 @@ public class PaymentInfo {
 	
 	public void setCardHolder(String holder) {
 		this.cardHolder = holder;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public String getCcNum() {

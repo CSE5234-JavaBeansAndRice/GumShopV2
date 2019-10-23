@@ -1,12 +1,34 @@
 package edu.osu.cse5234.model;
 import java.util.List;
+import javax.persistence.*;
 
-
+@Entity
+@Table(name="CUSTOMER_ORDER")
 public class Order {
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="ID")
 	private int id;
+    
+    @Column(name="CUSTOMER_NAME")
 	private String customerName;
+    
+    @Column(name="CUSTOMER_EMAIL")
 	private String emailAddress;
-	private List<LineItem> lineItems;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="CUSTOMER_ORDER_ID_FK")
+	private List<LineItem> items;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="PAYMENT_INFO_ID_FK")
+	private PaymentInfo payment;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="SHIPPING_INFO_ID_FK")
+	private ShippingInfo shipping;
+
 	
 	public Order() {
     
@@ -24,8 +46,8 @@ public class Order {
 		this.emailAddress = emailAddress;
 	}
 	
-	public void setLineItems(List<LineItem> lineItems) {
-		this.lineItems = lineItems;
+	public void setLineItems(List<LineItem> items) {
+		this.items = items;
 	}
 	
 	public int getId() {
@@ -41,6 +63,6 @@ public class Order {
 	}
 	
 	public List<LineItem> getLineItems(){
-		return lineItems;
+		return items;
 	}
 }

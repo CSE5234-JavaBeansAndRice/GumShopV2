@@ -30,8 +30,9 @@ public class PurchaseController {
         Order order = new Order();
         request.setAttribute("order", order);
         InventoryService service = ServiceLocator.getInventoryService();
-        order.setItems(service.getAvailableInventory().getItems());
+        //order.setItems(service.getAvailableInventory().getItems());
         request.getSession().setAttribute("order", order);
+        
         // ... instantiate and set order object with items to display
         return "OrderEntryForm";
     }

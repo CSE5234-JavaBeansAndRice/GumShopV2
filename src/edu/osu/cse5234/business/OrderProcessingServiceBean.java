@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+import edu.osu.cse5234.model.LineItem;
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.util.ServiceLocator;
 import edu.osu.cse5234.business.view.InventoryService;
@@ -17,6 +20,9 @@ import edu.osu.cse5234.business.view.Item;
 @LocalBean
 public class OrderProcessingServiceBean {
 
+	@PersistenceContext
+	EntityManager entityManager;
+	
     /**
      * Default constructor.
      */
@@ -26,9 +32,11 @@ public class OrderProcessingServiceBean {
 
     public String processOrder(Order order) {
     	InventoryService service = ServiceLocator.getInventoryService();
-    	List<Item> items = order.getItems();
+    	List<LineItem> items = order.getLineItems();
     	if (service.validateQuantity(items)) {
     		service.updateInventory(items);
+    		entityManager.persist(order);
+    		entityManager.flush();
             return "3409439598423";
     	}
     	return "none";
@@ -36,7 +44,7 @@ public class OrderProcessingServiceBean {
 
     public boolean validateItemAvailability(Order order) {
         return ServiceLocator.getInventoryService()
-                .validateQuantity(order.getItems());
+                .validateQuantity(order.getLineItems());
     }
 
 }

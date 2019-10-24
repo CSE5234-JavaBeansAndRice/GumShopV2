@@ -17,7 +17,7 @@
 		<%= request.getAttribute("message") %>
 	<% } %>
 </div>
-<form:form modelAttribute="order" method="post" action="purchase/submitItems">
+<form:form modelAttribute="inventory" method="post" action="/GumShopV2/purchase/submitItems">
 
     <table class="orderEntryForm">
  	<tr>
@@ -25,11 +25,15 @@
  		<th class="formItem">Price</th>
  		<th class="formItem">Quantity</th>
  	</tr>
-	<c:forEach items="${order.items}" var="item" varStatus="loop">
+	<c:forEach items="${inventory.itemList}" var="item" varStatus="loop">
 		<tr>
-			<td class="formItem"><form:hidden path="items[${loop.index}].name" value="${item.name}"/><c:out value="${item.name }"/></td>
-			<td class="formItem">$<form:hidden path="items[${loop.index}].price" value="${item.price}"/><c:out value ="${item.price}"/></td>
-			<td class="formItem"><form:input path="items[${loop.index}].quantity" /></td>
+			<td class="formItem"><form:hidden path="itemList[${loop.index}].name" value="${item.name}"/><c:out value="${item.name}"/></td>
+			<td class="formItem">$<form:hidden path="itemList[${loop.index}].unitPrice" value="${item.unitPrice}"/><c:out value ="${item.unitPrice}"/></td>
+			<td class="formItem"><form:input path="itemList[${loop.index}].quantity"/></td>
+			<form:hidden path="itemList[${loop.index}].id" value="${item.id}"/>
+			<form:hidden path="itemList[${loop.index}].itemNumber" value="${item.itemNumber}"/>
+			<form:hidden path="itemList[${loop.index}].description" value="${item.description}"/>
+			<form:hidden path="itemList[${loop.index}].availableQuantity" value="${item.availableQuantity}"/>
 		</tr>
 	</c:forEach>
 	<tr>

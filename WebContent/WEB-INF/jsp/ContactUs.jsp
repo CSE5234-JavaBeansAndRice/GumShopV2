@@ -22,7 +22,7 @@
 		<div class="info-name">Guoyao Cheng</div>
 		<div class="info-email">Email: cheng.1367@osu.edu</div>
 		<div class="info-phone">Phone: +1 (123)456-7890</div>
-		<div class="info-github">Github: github.com/skyfaqer</div>
+		<div class="info-github">Github: @skyfaqer</div>
 	</div>
 	<div class="info-wrapper">
 		<div class="info-name">Charlie Yu</div>

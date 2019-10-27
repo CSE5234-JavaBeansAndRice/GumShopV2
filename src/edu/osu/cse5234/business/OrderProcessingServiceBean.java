@@ -1,5 +1,6 @@
 package edu.osu.cse5234.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -32,19 +33,29 @@ public class OrderProcessingServiceBean {
 
     public String processOrder(Order order) {
     	InventoryService service = ServiceLocator.getInventoryService();
-    	List<LineItem> items = order.getLineItems();
-    	if (service.validateQuantity(items)) {
-    		service.updateInventory(items);
-    		entityManager.persist(order);
-    		entityManager.flush();
-            return "3409439598423";
+    	List<Item> itemList = new ArrayList<Item>();
+    	for (LineItem line : order.getLineItems()) {
+    		Item item = new Item();
+    		item.setName(line.getItemName());
+    		item.setItemNumber(line.getItemNumber());
+    		itemList.add(item);
     	}
-    	return "none";
-    }
+    	service.validateQuantity(itemList);
+		service.updateInventory(itemList);
+		entityManager.persist(order);
+		entityManager.flush();
+        return "3409439598423";
+    	    }
 
     public boolean validateItemAvailability(Order order) {
-        return ServiceLocator.getInventoryService()
-                .validateQuantity(order.getLineItems());
+    	List<Item> itemList = new ArrayList<Item>();
+    	for (LineItem line : order.getLineItems()) {
+    		Item item = new Item();
+    		item.setName(line.getItemName());
+    		item.setItemNumber(line.getItemNumber());
+    		itemList.add(item);
+    	}
+        return ServiceLocator.getInventoryService().validateQuantity(itemList);
     }
 
 }

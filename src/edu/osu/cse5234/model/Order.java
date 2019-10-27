@@ -50,6 +50,14 @@ public class Order {
 		this.items = items;
 	}
 	
+	public void setPaymentInfo(PaymentInfo payment) {
+		this.payment = payment;
+	}
+	
+	public void setShippingInfo(ShippingInfo shipping) {
+		this.shipping = shipping;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -64,5 +72,13 @@ public class Order {
 	
 	public List<LineItem> getLineItems(){
 		return items;
+	}
+	
+	public PaymentInfo getPaymentInfo() {
+		return payment;
+	}
+	
+	public ShippingInfo getShippingInfo() {
+		return shipping;
 	}
 }

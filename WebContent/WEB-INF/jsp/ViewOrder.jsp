@@ -18,9 +18,9 @@
  		<th>Price</th>
  		<th>Quantity</th>
  	</tr>
-	<c:forEach items="${order.items}" var="item" varStatus="loop">
+	<c:forEach items="${order.lineItems}" var="item" varStatus="loop">
 		<tr>
-			<td><c:out value="${item.name}"></c:out></td>
+			<td><c:out value="${item.itemName}"></c:out></td>
 			<td><c:out value="$ ${item.price}"></c:out></td>
 			<td><c:out value = "${item.quantity}" /></td>
 		</tr>

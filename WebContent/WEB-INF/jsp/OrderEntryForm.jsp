@@ -12,7 +12,12 @@
 <body>
 <jsp:include page="Header.jsp"/>
 <div class="orderFormTitle">New Order</div>
-<form:form modelAttribute="order" method="post" action="purchase/submitItems">
+<div style="background-color: red">
+	<% if (request.getAttribute("message") != null) { %>
+		<%= request.getAttribute("message") %>
+	<% } %>
+</div>
+<form:form modelAttribute="inventory" method="post" action="purchase/submitItems">
 
     <table class="orderEntryForm">
  	<tr>
@@ -20,11 +25,11 @@
  		<th class="formItem">Price</th>
  		<th class="formItem">Quantity</th>
  	</tr>
-	<c:forEach items="${order.lineItems}" var="item" varStatus="loop">
+	<c:forEach items="${inventory.items}" var="item" varStatus="loop">
 		<tr>
-			<td class="formItem"><form:hidden path="lineItems[${loop.index}].name" value="${item.name}"/><c:out value="${item.name }"/></td>
-			<td class="formItem">$<form:hidden path="lineItems[${loop.index}].unitPrice" value="${item.unitPrice}"/><c:out value ="${item.unitPrice}"/></td>
-			<td class="formItem"><form:input path="lineItems[${loop.index}].availableQuantity" /></td>
+			<td class="formItem"><form:hidden path="items[${loop.index}].name" value="${item.name}"/><c:out value="${item.name }"/></td>
+			<td class="formItem">$<form:hidden path="items[${loop.index}].unitPrice" value="${item.unitPrice}"/><c:out value ="${item.unitPrice}"/></td>
+			<td class="formItem"><form:input path="items[${loop.index}].availableQuantity" value="1" /></td>
 		</tr>
 	</c:forEach>
 	<tr>

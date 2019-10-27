@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.osu.cse5234.business.OrderProcessingServiceBean;
+import edu.osu.cse5234.model.LineItem;
 import edu.osu.cse5234.model.Order;
 import edu.osu.cse5234.model.PaymentInfo;
 import edu.osu.cse5234.model.ShippingInfo;
 import edu.osu.cse5234.util.ServiceLocator;
+import edu.osu.cse5234.business.view.Inventory;
 import edu.osu.cse5234.business.view.InventoryService;
 import edu.osu.cse5234.business.view.Item;
 
@@ -30,6 +32,8 @@ public class PurchaseController {
         Order order = new Order();
         request.setAttribute("order", order);
         InventoryService service = ServiceLocator.getInventoryService();
+        Inventory inventory = service.getAvailableInventory();
+        request.setAttribute("inventory", inventory);
         //order.setItems(service.getAvailableInventory().getItems());
         request.getSession().setAttribute("order", order);
         
@@ -38,13 +42,29 @@ public class PurchaseController {
     }
 
     @RequestMapping(path = "/submitItems", method = RequestMethod.POST)
-    public String submitItems(@ModelAttribute("order") Order order,
+    public String submitItems(@ModelAttribute("inventory") Inventory inventory,
             HttpServletRequest request) {
+    	OrderProcessingServiceBean service = ServiceLocator.getOrderProcessingService();
+    	Order order = new Order();
+    	List<LineItem> lineItems = new ArrayList<LineItem>();
+    	for (Item item : inventory.getItems()) {
+    		LineItem l = new LineItem();
+    		l.setId(item.getId());
+    		l.setItemName(item.getName());
+    		l.setItemNumber(item.getItemNumber());
+    		l.setPrice(item.getUnitPrice());
+    		l.setQuantity(item.getAvailableQuantity());
+    		lineItems.add(l);
+    	}
+    	order.setLineItems(lineItems);
         request.getSession().setAttribute("order", order);
-        OrderProcessingServiceBean service = ServiceLocator.getOrderProcessingService();
         if (service.validateItemAvailability(order)) {
             return "redirect:/purchase/paymentEntry";
         } else {
+        	request.setAttribute("message", "We do not have the inventory to fulfill your order. "
+        			+ "Please try again with lower quantities");
+        	Inventory inv =ServiceLocator.getInventoryService().getAvailableInventory();
+        	request.setAttribute("inv", inv);
         	return "OrderEntryForm";
         }
     }
@@ -89,6 +109,9 @@ public class PurchaseController {
         shipping.setState(state);
         shipping.setZip(zip);
     	request.getSession().setAttribute("shipping", shipping);
+    	Order order = (Order) request.getSession().getAttribute("order");
+    	order.setCustomerName(name);
+    	order.setShippingInfo(shipping);
         return "redirect:/purchase/viewOrder";
 
     }
@@ -97,20 +120,20 @@ public class PurchaseController {
     public String displayCompleteOrder(HttpServletResponse response, 
     		HttpServletRequest request) throws Exception {
     	//Order order = (Order) request.getSession().getAttribute("order");
-    	Order order = (Order) request.getSession().getAttribute("order");
+    	//Order order = (Order) request.getSession().getAttribute("order");
         return "ViewOrder";
 
     }
 
     @RequestMapping(path = "/confirmOrder", method = RequestMethod.POST)
-    public String confirmOrder(@ModelAttribute("order") Order order,
+    public String confirmOrder(@ModelAttribute("order") Order ord,
     		HttpServletRequest request) throws Exception {
-        request.getSession().setAttribute("order", order);
         OrderProcessingServiceBean service = ServiceLocator.getOrderProcessingService();
+    	Order order = (Order) request.getSession().getAttribute("order");
         String code = service.processOrder(order);
+        request.getSession().setAttribute("order", order);
         request.getSession().setAttribute("code", code);
         return "redirect:/purchase/viewConfirmation";
-
     }
 
     @RequestMapping(path = "/viewConfirmation", method = RequestMethod.GET)

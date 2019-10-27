@@ -16,12 +16,13 @@ public class LineItem {
     
     @Column(name="ID_NAME") 
 	private String itemName;
-    
-	private double price;
-	
+   	
     @Column(name="QUANTITY") 
 	private int quantity;
 	
+    @Transient
+	private double price;
+    
 	public LineItem() {
 		
 	}

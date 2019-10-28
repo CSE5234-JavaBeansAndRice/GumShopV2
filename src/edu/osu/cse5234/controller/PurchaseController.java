@@ -85,8 +85,9 @@ public class PurchaseController {
         payment.setExpiration(expiration);
         payment.setCvv(cvv);
         payment.setCardHolder(cardHolder);
-        System.out.println(payment.getCardHolder());
     	request.getSession().setAttribute("payment", payment);
+    	Order order = (Order) request.getSession().getAttribute("order");
+    	order.setPaymentInfo(payment);
         return "redirect:/purchase/shippingEntry";
 
     }

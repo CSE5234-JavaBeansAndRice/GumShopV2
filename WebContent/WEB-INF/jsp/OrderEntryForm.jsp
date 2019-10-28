@@ -12,7 +12,7 @@
 <body>
 <jsp:include page="Header.jsp"/>
 <div class="orderFormTitle">New Order</div>
-<div style="background-color: red">
+<div style="background-color: red; color: white">
 	<% if (request.getAttribute("message") != null) { %>
 		<%= request.getAttribute("message") %>
 	<% } %>

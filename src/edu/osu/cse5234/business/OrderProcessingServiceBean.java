@@ -53,6 +53,7 @@ public class OrderProcessingServiceBean {
     		Item item = new Item();
     		item.setName(line.getItemName());
     		item.setItemNumber(line.getItemNumber());
+    		item.setAvailableQuantity(line.getQuantity());
     		itemList.add(item);
     	}
         return ServiceLocator.getInventoryService().validateQuantity(itemList);

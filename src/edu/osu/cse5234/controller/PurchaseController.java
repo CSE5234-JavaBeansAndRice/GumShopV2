@@ -62,7 +62,7 @@ public class PurchaseController {
             return "redirect:/purchase/paymentEntry";
         } else {
         	request.setAttribute("message", "We do not have the inventory to fulfill your order. "
-        			+ "Please try again with lower quantities");
+        			+ "Please try again with lower quantities.");
         	Inventory inv =ServiceLocator.getInventoryService().getAvailableInventory();
         	request.setAttribute("inv", inv);
         	return "OrderEntryForm";

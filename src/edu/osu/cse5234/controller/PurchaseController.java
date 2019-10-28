@@ -85,6 +85,7 @@ public class PurchaseController {
         payment.setExpiration(expiration);
         payment.setCvv(cvv);
         payment.setCardHolder(cardHolder);
+        System.out.println(payment.getCardHolder());
     	request.getSession().setAttribute("payment", payment);
         return "redirect:/purchase/shippingEntry";
 
@@ -93,7 +94,8 @@ public class PurchaseController {
     @RequestMapping(path = "/shippingEntry", method = RequestMethod.GET)
     public String displayShippingEntry(HttpServletRequest request,
     		HttpServletResponse response) throws Exception {
-        request.setAttribute("shipping", new ShippingInfo());
+    	ShippingInfo shipping = new ShippingInfo();
+        request.getSession().setAttribute("shipping", shipping);
         return "ShippingEntryForm";
 
     }
@@ -101,7 +103,7 @@ public class PurchaseController {
     @RequestMapping(path = "/submitShipping", method = RequestMethod.POST)
     public String submitShippingInfo(@ModelAttribute("shipping") ShippingInfo shipping,
     		HttpServletRequest request, @RequestParam String name, @RequestParam String addressLine1, @RequestParam String addressLine2,
-            @RequestParam String city, @RequestParam String state, @RequestParam String zip) throws Exception {
+            @RequestParam String city, @RequestParam String state, @RequestParam String zip, @RequestParam String email) throws Exception {
         shipping.setName(name);
         shipping.setAddressLine1(addressLine1);
         shipping.setAddressLine2(addressLine2);
@@ -112,6 +114,7 @@ public class PurchaseController {
     	Order order = (Order) request.getSession().getAttribute("order");
     	order.setCustomerName(name);
     	order.setShippingInfo(shipping);
+    	order.setEmailAddress(email);
         return "redirect:/purchase/viewOrder";
 
     }

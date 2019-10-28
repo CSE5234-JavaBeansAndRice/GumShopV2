@@ -18,6 +18,13 @@
   </p>
   
    <p>
+  Enter your email address:
+  <input type="text" name="email" id = "email" />
+  <br />
+  </p>
+  
+  
+   <p>
   Enter address line 1 :
   <input type="text" name="addressLine1" id = "addressLine1" />
   <br />

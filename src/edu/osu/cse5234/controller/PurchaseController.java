@@ -134,6 +134,9 @@ public class PurchaseController {
     		HttpServletRequest request) throws Exception {
         OrderProcessingServiceBean service = ServiceLocator.getOrderProcessingService();
     	Order order = (Order) request.getSession().getAttribute("order");
+    	for (LineItem line : order.getLineItems()) {
+    		System.out.println(line.getQuantity());
+    	}
         String code = service.processOrder(order);
         request.getSession().setAttribute("order", order);
         request.getSession().setAttribute("code", code);

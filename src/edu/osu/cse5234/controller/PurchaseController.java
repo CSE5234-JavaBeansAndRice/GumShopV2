@@ -47,14 +47,18 @@ public class PurchaseController {
     	OrderProcessingServiceBean service = ServiceLocator.getOrderProcessingService();
     	Order order = new Order();
     	List<LineItem> lineItems = new ArrayList<LineItem>();
+        InventoryService inventoryService = ServiceLocator.getInventoryService();
+        Inventory inven = inventoryService.getAvailableInventory();
+        int num = 1;
     	for (Item item : inventory.getItems()) {
     		LineItem l = new LineItem();
     		l.setId(item.getId());
     		l.setItemName(item.getName());
-    		l.setItemNumber(item.getItemNumber());
+    		l.setItemNumber(num);
     		l.setPrice(item.getUnitPrice());
     		l.setQuantity(item.getAvailableQuantity());
     		lineItems.add(l);
+    		num++;
     	}
     	order.setLineItems(lineItems);
         request.getSession().setAttribute("order", order);

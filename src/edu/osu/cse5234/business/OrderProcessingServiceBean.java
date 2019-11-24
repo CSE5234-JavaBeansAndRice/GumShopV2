@@ -31,9 +31,9 @@ import edu.osu.cse5234.business.view.Item;
 /**
  * Session Bean implementation class OrderProcessingServiceBean
  */
+@Resource(name="jms/emailQCF", lookup="jms/emailQCF", type=ConnectionFactory.class)
 @Stateless
 @LocalBean
-@Resource(name="jms/emailQCF", lookup="jms/emailQCF", type=ConnectionFactory.class)
 public class OrderProcessingServiceBean {
 
 	@PersistenceContext

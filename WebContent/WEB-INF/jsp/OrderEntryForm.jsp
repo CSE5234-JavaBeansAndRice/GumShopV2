@@ -32,10 +32,9 @@
 			<td class="formItem"><form:input path="items[${loop.index}].availableQuantity" value="1" /></td>
 		</tr>
 	</c:forEach>
-	<tr>
-		<td class="submitOrder" colspan="2"><input class="submitButton" type="submit" value="Purchase"></td>
-	</tr>
+
     </table>
+    <input class="submitButton" type="submit" value="Purchase">
 
 </form:form>
 <jsp:include page="Footer.jsp"/>

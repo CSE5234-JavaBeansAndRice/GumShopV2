@@ -10,6 +10,8 @@
 <title>Payment Entry Form</title>
 </head>
 <body>
+<jsp:include page="Header.jsp"/>
+
 <form:form modelAttribute="payment" method="post" action="submitPayment">
  <p>
   Enter your credit card #:
@@ -39,6 +41,6 @@
     
    <input style="width: 300px" class = "submitButton" type="submit" value="Continue to shipping information">
 </form:form>
-
+<jsp:include page="Footer.jsp"/>
 </body>
 </html>

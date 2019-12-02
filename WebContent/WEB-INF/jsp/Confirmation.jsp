@@ -10,9 +10,12 @@
 <title>Confirmation Page</title>
 </head>
 <body>
+<jsp:include page="Header.jsp"/>
 
 	<h3>Your order has been submitted and will be shipped shortly!</h3>
 	<p>Here is your confirmation code: <c:out value="${code}"></c:out></p>
 	<a href="/GumShopV2" class="nav-item">Back to Home</a>
+	
+<jsp:include page="Footer.jsp"/>
 </body>
 </html>

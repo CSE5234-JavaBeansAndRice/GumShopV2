@@ -10,6 +10,8 @@
 <title>Shipment Entry Form</title>
 </head>
 <body>
+<jsp:include page="Header.jsp"/>
+
 <form:form modelAttribute="shipping" method="post" action="submitShipping">
  <p>
   Enter your name:
@@ -59,6 +61,6 @@
     
    <input style = "width: 300px" class = "submitButton" type="submit" value="Continue to view and confirm order">
 </form:form>
-
+<jsp:include page="Footer.jsp"/>
 </body>
 </html>

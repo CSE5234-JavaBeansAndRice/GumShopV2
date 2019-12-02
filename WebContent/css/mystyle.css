@@ -4,13 +4,14 @@ html {
 	color: #2E2E2E;
 	font-family: Arial, Helvetica, sans-serif;
 	background-color: #F2F2F2;
-	max-width: 980px;
+	text-align: center;
 }
 
 body {
 	margin: 40px 40px;
 	padding: 0px;
 	height: 100%;
+
 }
 
 .header {

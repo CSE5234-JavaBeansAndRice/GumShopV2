@@ -10,6 +10,7 @@
 <title>Order Summary</title>
 </head>
 <body>
+<jsp:include page="Header.jsp"/>
 <form:form modelAttribute="order" method="post" action="confirmOrder">
  <h2>Here is your order: </h2>
     <table style="border= 2px solid black">
@@ -25,13 +26,11 @@
 			<td><c:out value = "${item.quantity}" /></td>
 		</tr>
 	</c:forEach>
-	  <tr>
-		<td colspan="2"><input class = "submitButton" style="width: 120px"type="submit" value="Confirm order"></td>
-	  </tr>
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
     </table>
+    <input class = "submitButton" style="width: 120px"type="submit" value="Confirm order">
 </form:form>
-
+<jsp:include page="Footer.jsp"/>
 </body>
 </html>
